@@ -1,0 +1,5 @@
+{
+  "/api/cities": {
+    "target": "http://localhost:3000/cities"
+  }
+}
