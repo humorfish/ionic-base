@@ -42,10 +42,10 @@
                 "input": "src/style/common.scss"
               },
               {
-                "input": "src/style/mixin.scss"
+                "input": "src/style/icons.scss"
               },
               {
-                "input": "src/style/icons.scss"
+                "input": "src/style/mixin.scss"
               }
             ],
             "scripts": []

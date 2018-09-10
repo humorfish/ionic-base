@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
 	groupCities: Array<any> = [];
 
 	constructor(public dataSvc: DataService, private router: Router) {
-		this.router.navigate(['/login']);
+		// this.router.navigate(['/login']);
 	}
 
 	ngOnInit() {
