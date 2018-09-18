@@ -42,3 +42,41 @@
         height: 2rem;
     } 
 }
+
+.getpois-ul {
+    background-color: white;
+    border-top: 1px solid #e4e4e4;
+    li {
+        padding-top: 1.088rem;
+        padding-bottom: .92rem;
+        border-bottom: 1px solid #e4e4e4;
+        .pois-name {
+            font-size: 1.088rem;
+            width: 90%;
+            margin: 0 auto .586rem;
+        }
+        .pois-address {
+            font-size: .857rem;
+            width: 90%;
+            margin: 0 auto;
+            color: #999;
+        }
+    }
+}
+
+.pois-search-history {
+    font-size: .8rem;
+    padding-left: .8rem;
+  
+  }
+  .search-none-place, .clear-all-history {
+    line-height: 3rem;
+    font-size: 1.1rem;
+    background-color: #fff;
+  }
+  .search-none-place {
+    text-indent: .85rem;
+  }
+  .clear-all-history {
+    text-align: center;
+  }

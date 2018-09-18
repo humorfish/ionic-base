@@ -14,13 +14,13 @@
             <button (click)="searchPlace()">提交</button>
         </div>
     </form>
-    <header *ngIf="historyTitle" class="pois_search_history">搜索历史</header>
-    <ul class="getpois_ul">
+    <header *ngIf="historyTitle" class="pois-search-history">搜索历史</header>
+    <ul class="getpois-ul">
         <li *ngFor="let place of placeList" (click)="toMiste(place)">
-        <h4 class="pois_name">{{place?.name}}</h4>
-        <p class="pois_address">{{place?.address}}</p>
+        <h4 class="pois-name">{{place?.name}}</h4>
+        <p class="pois-address">{{place?.address}}</p>
         </li>
     </ul>
-    <footer *ngIf="historyTitle&&placeList.length" class="clear_all_history" (click)="clearAll()">清空所有</footer>
-    <div class="search_none_place" *ngIf="placeNone">很抱歉！无搜索结果</div>
+    <footer *ngIf="historyTitle && placeList.length" class="clear-all-history" (click)="clearAll()">清空所有</footer>
+    <div class="search-none-place" *ngIf="placeNone">很抱歉！无搜索结果</div>
 </ion-content>

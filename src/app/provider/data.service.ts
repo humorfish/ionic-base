@@ -45,7 +45,7 @@ export class DataService {
         })).toPromise();
     }
 
-    searchPlace(): Promise<any> {
+    searchPlace(cityId: string, keyword: string): Promise<any> {
         return null;
     }
 }
