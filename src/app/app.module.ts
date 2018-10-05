@@ -7,19 +7,24 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
-import { DataService } from './provider';
+
+import { DataService, AppService, ShopService, CartService } from './provider';
+import { AppRoutingModule } from './app-routing.module';
+import { ComponentsModule } from './component';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ComponentsModule],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    DataService
+    DataService,
+    AppService,
+    ShopService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

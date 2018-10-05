@@ -1,21 +1,29 @@
 @font-face {
-    font-family: 'blueicons';
-    src: url('/assets/fonts/blueicons.eot?8rxali');
-    src: url('/assets/fonts/blueicons.eot?8rxali#iefix') format('embedded-opentype'),
-    url('/assets/fonts/blueicons.ttf?8rxali') format('truetype'),
-    url('/assets/fonts/blueicons.woff?8rxali') format('woff'),
-    url('/assets/fonts/blueicons.svg?8rxali#blueicons') format('svg');
+    font-family: 'iconfont';
+    src: url('/assets/fonts/iconfont.eot?8rxali');
+    src: url('/assets/fonts/iconfont.eot?8rxali#iefix') format('embedded-opentype'),
+    url('/assets/fonts/iconfont.ttf?8rxali') format('truetype'),
+    url('/assets/fonts/iconfont.woff?8rxali') format('woff'),
+    url('/assets/fonts/iconfont.svg?8rxali#iconfont') format('svg');
     font-weight: normal;
     font-style: normal;
   }
 
-  i {
+  [class^="icon-"], [class*=" icon-"] {
     $size: 12;
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'iconfont' !important;
+    speak: none;
     font-style: normal;
-    vertical-align: middle;
-    &[app-icon],&.app-icon {
-      font-family: "blueicons" !important;
-    }
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
     &[max-width],&max-width{
       font-size:100vw;
     }
@@ -25,32 +33,16 @@
       }
       $size: $size+1;
     }
+    &.weight,
     &[weight]{
       font-weight:bold;
     }
+    &.white,
+    &[white] {
+      color: white;
+    }
   }
   
-  .icon-bluetens-abdomen:before {
-    content: "\e900";
-  }
-  .icon-bluetens-aircraft:before {
-    content: "\e901";
-  }
-  .icon-bluetens-ankle:before {
-    content: "\e902";
-  }
-  .icon-bluetens-arm:before {
-    content: "\e903";
-  }
-  .icon-bluetens-back:before {
-    content: "\e904";
-  }
-  .icon-bluetens-buttocks:before {
-    content: "\e905";
-  }
-  .icon-bluetens-calf:before {
-    content: "\e906";
-  }
   .icon-bluetens-carender:before {
     content: "\e907";
   }
@@ -63,44 +55,20 @@
   .icon-bluetens-Cry:before {
     content: "\e90a";
   }
-  .icon-bluetens-cure:before {
-    content: "\e90b";
-  }
   .icon-bluetens-download:before {
     content: "\e90c";
   }
   .icon-bluetens-download2:before {
     content: "\e90d";
   }
-  .icon-bluetens-elbow:before {
-    content: "\e90e";
-  }
-  .icon-bluetens-foot:before {
-    content: "\e90f";
-  }
-  .icon-bluetens-forearm:before {
-    content: "\e910";
-  }
-  .icon-bluetens-Gift-box:before {
-    content: "\e911";
-  }
   .icon-bluetens-home:before {
     content: "\e912";
-  }
-  .icon-bluetens-knee:before {
-    content: "\e913";
   }
   .icon-bluetens-lock:before {
     content: "\e914";
   }
-  .icon-bluetens-lower-back:before {
-    content: "\e915";
-  }
   .icon-bluetens-problem:before {
     content: "\e916";
-  }
-  .icon-bluetens-relax:before {
-    content: "\e917";
   }
   .icon-bluetens-Return:before {
     content: "\e918";
@@ -108,23 +76,11 @@
   .icon-bluetens-Set-up:before {
     content: "\e919";
   }
-  .icon-bluetens-shoulders:before {
-    content: "\e91a";
+  .icon-date:before {
+    content: "\e91b";
   }
   .icon-bluetens-start:before {
     content: "\e91c";
-  }
-  .icon-bluetens-thigh:before {
-    content: "\e91d";
-  }
-  .icon-bluetens-train:before {
-    content: "\e91e";
-  }
-  .icon-bluetens-upper-back:before {
-    content: "\e91f";
-  }
-  .icon-bluetens-wrist:before {
-    content: "\e920";
   }
   .icon-bluetens-character:before {
     content: "\e921";
@@ -174,140 +130,8 @@
   .icon-Wi-Fi:before {
     content: "\e930";
   }
-  .icon-Avant-bras-01:before {
-    content: "\e931";
-  }
-  .icon-Avant-bras-02:before {
-    content: "\e932";
-  }
-  .icon-Avant-bras-03:before {
-    content: "\e933";
-  }
-  .icon-Avant-bras-04:before {
-    content: "\e934";
-  }
-  .icon-Bas-dos-01:before {
-    content: "\e935";
-  }
-  .icon-Bras-01:before {
-    content: "\e936";
-  }
-  .icon-Bras-02:before {
-    content: "\e937";
-  }
-  .icon-Bras-03:before {
-    content: "\e938";
-  }
-  .icon-Bras-04:before {
-    content: "\e939";
-  }
-  .icon-Cheville-01:before {
-    content: "\e93a";
-  }
-  .icon-Cheville-02:before {
-    content: "\e93b";
-  }
-  .icon-Coudes-01:before {
-    content: "\e93c";
-  }
-  .icon-Coudes-02:before {
-    content: "\e93d";
-  }
-  .icon-Cuisses-01:before {
-    content: "\e93e";
-  }
-  .icon-Cuisses-02:before {
-    content: "\e93f";
-  }
-  .icon-Cuisses-03:before {
-    content: "\e940";
-  }
-  .icon-Cuisses-04:before {
-    content: "\e941";
-  }
-  .icon-Dos:before {
-    content: "\e942";
-  }
-  .icon-Epaules-01:before {
-    content: "\e943";
-  }
-  .icon-Epaules-02:before {
-    content: "\e944";
-  }
-  .icon-Fesses-01:before {
-    content: "\e945";
-  }
-  .icon-Fesses-02:before {
-    content: "\e946";
-  }
-  .icon-Genoux-01:before {
-    content: "\e947";
-  }
-  .icon-Genoux-02:before {
-    content: "\e948";
-  }
-  .icon-Haut-dos-01:before {
-    content: "\e949";
-  }
-  .icon-Incontinence-cheville-FR:before {
-    content: "\e94a";
-  }
-  .icon-Mollet-01:before {
-    content: "\e94b";
-  }
-  .icon-Mollet-02:before {
-    content: "\e94c";
-  }
-  .icon-Pectoraux-01:before {
-    content: "\e94d";
-  }
-  .icon-Pieds-01:before {
-    content: "\e94e";
-  }
-  .icon-Pieds-02:before {
-    content: "\e94f";
-  }
-  .icon-Poignet-01:before {
-    content: "\e950";
-  }
-  .icon-Poignet-02:before {
-    content: "\e951";
-  }
-  .icon-Ventre:before {
-    content: "\e952";
-  }
-  .icon-Epaules-03:before {
-    content: "\e953";
-  }
-  .icon-Haut-dos-03:before {
-    content: "\e954";
-  }
-  .icon-posture-01:before {
-    content: "\e955";
-  }
-  .icon-posture-02:before {
-    content: "\e956";
-  }
-  .icon-posture-03:before {
-    content: "\e957";
-  }
-  .icon-posture-04:before {
-    content: "\e958";
-  }
-  .icon-posture-05:before {
-    content: "\e959";
-  }
-  .icon-posture-06:before {
-    content: "\e95a";
-  }
-  .icon-posture-07:before {
-    content: "\e95b";
-  }
   .icon-smile:before {
     content: "\e95c";
-  }
-  .icon-bluetens:before {
-    content: "\e95d";
   }
   .icon-bluetens-star-outline:before {
     content: "\e95e";
@@ -315,17 +139,8 @@
   .icon-bluetens-star2:before {
     content: "\e95f";
   }
-  .icon-date:before {
-    content: "\e91b";
-  }
   .icon-time:before {
     content: "\e960";
-  }
-  .icon-treatment:before {
-    content: "\e961";
-  }
-  .icon-statistics:before {
-    content: "\e962";
   }
   .icon-delete:before {
     content: "\e963";
@@ -339,3 +154,46 @@
   .icon-bluetens-bold-circle:before {
     content: "\e966";
   }
+  .icon-_484:before {
+    content: "\f204";
+  }
+  .icon-_485:before {
+    content: "\f205";
+  }
+  .icon-star_empty:before {
+    content: "\f006";
+  }
+  .icon-star:before {
+    content: "\f005";
+  }
+  .icon-uniF2AC:before {
+    content: "\f2ac";
+  }
+  .icon-uniF2AD:before {
+    content: "\f2ad";
+  }
+  .icon-uniF2BD:before {
+    content: "\f2bd";
+  }
+  .icon-uniF2BE:before {
+    content: "\f2be";
+  }
+  .icon-map_marker:before {
+    content: "\f041";
+  }
+  .icon-comment_alt:before {
+    content: "\f0e5";
+  }
+  .icon-comments_alt:before {
+    content: "\f0e6";
+  }
+  .icon-search:before {
+    content: "\f002";
+  }
+  .icon-file:before {
+    content: "\f15b";
+  }
+  .icon-file_text:before {
+    content: "\f15c";
+  }
+  

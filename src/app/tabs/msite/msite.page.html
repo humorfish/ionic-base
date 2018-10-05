@@ -1,10 +1,40 @@
 <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary">
+        <i class="icon-back app-icon" (click)="goBack()"></i>
         <ion-title>
             {{title}}
         </ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    
+    <nav class="msite-nav">
+        <div class="swiper-container" *ngIf="foodTypes?.length">
+            <div class="food-types-container">
+                <ion-slides (ionSlideDidChange)="slideChanged($event)" pager="true">
+                    <ion-slide *ngFor="let foodType of foodTypes">
+                        <a class="link-to-food" *ngFor="let foodItem of foodType" >
+                            <figure>
+                                <img [src]="imgBaseUrl + foodItem.image_url">
+                                <figcaption>{{foodItem.title}}</figcaption>
+                            </figure>
+                        </a>
+                    </ion-slide>
+                </ion-slides>
+            </div>
+        </div>
+    </nav>
+    <section class="shop-list-container">
+        <header class="shop-header">
+            <svg class="shop-icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#shop"></use>
+            </svg>
+            <span class="shop-header__title">附件商家</span>
+        </header>
+        <shop-list *ngIf="hasGetData" [type]="'msite'" [shopList]="shopList" [geohash]="geohash"></shop-list>
+        <p *ngIf="touchend" class="empty-data">没有更多了</p>
+    </section>
+    <loading [hidden]="!showLoading"></loading>
+    <ion-infinite-scroll threshold="20px" (ionInfinite)="loaderMore($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

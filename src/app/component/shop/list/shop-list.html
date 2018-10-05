@@ -1,0 +1,11 @@
+<div class="shoplist-container">
+    <ul *ngIf="type === 'search'">
+        <ng-container *ngFor="let shop of shopList">
+        </ng-container>
+    </ul>
+    <ul *ngIf="type === 'msite'">
+        <ng-container *ngFor="let shop of shopList">
+            <shop-msite [shop]='shop' [geohash]='geohash'></shop-msite>
+        </ng-container>
+    </ul>
+</div>

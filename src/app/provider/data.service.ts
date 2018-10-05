@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
 
@@ -46,6 +46,46 @@ export class DataService {
     }
 
     searchPlace(cityId: string, keyword: string): Promise<any> {
-        return null;
+        //  HttpParams是一个不可变对象，每次set都会返回一个新的对象，所以需要链式调用
+        let params = new HttpParams()
+        // .set('type', 'search')
+        // .set('city_id', cityId)
+        // .set('keyword', keyword);
+        return this.http.get('/api/pois').toPromise();
+    }
+
+    getPoisGeohash(geohash: string): Promise<any>
+    {
+        return this.http.get('/api/pois' + `?geohash=${geohash}`).pipe(map(res => res[0])).toPromise();
+    }
+
+    getMsiteFoodTypes(geohash: string): Promise<any>
+    {
+        return this.http.get('/api/index_entry').toPromise();
+    }
+
+    getShopList(geohash: string): Promise<any>
+    {
+        return this.http.get('/api/restaurants').toPromise();
+    }
+
+    async getShopDetails(shopId: string, geohash: string): Promise<any>
+    {
+        return await this.http.get('/api/shop' + `?id=${shopId}`).pipe(map(res => res[0])).toPromise();
+    }
+
+    async getFoodMenu(shopId: string): Promise<any>
+    {
+        return await this.http.get('/api/foodmenu' + `?restaurant_id=${shopId}`).toPromise();
+    }
+
+    async getRatingList(shopId: string): Promise<any>
+    {
+        return await this.http.get('/api/ratinglist').toPromise();
+    }
+
+    async getRatingScores(shopId: string): Promise<any>
+    {
+        return await this.http.get('/api/ratingscores').toPromise();
     }
 }

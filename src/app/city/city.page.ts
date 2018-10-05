@@ -1,5 +1,5 @@
 import { OnInit, Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { DataService } from '../provider';
 import { AppService } from '../provider/app.service';
 
@@ -20,16 +20,18 @@ export class CityPage implements OnInit {
         private router: Router,
         private appService: AppService,
         private dataSvc: DataService) {
-        this.guessCityId = this.activedRoute.snapshot.paramMap.get('id');
-        this.guessCityType = this.activedRoute.snapshot.paramMap.get('type');
-        this.getCityById(this.guessCityType, this.guessCityId);
+        this.activedRoute.queryParams.subscribe((params: Params) => {
+            this.guessCityId =  params['id'];
+            this.guessCityType =  params['type'];
+            this.getCityById(this.guessCityType, this.guessCityId);
+            });    
     }
 
     ngOnInit() {
 
     }
 
-    getCityById(type: string, id: string) {
+    getCityById(type: string, id: string) {        
         this.dataSvc.getCityById(type, id)
             .then(res => this.guessCity = res.name)
             .catch(err => console.log(err));
@@ -49,14 +51,18 @@ export class CityPage implements OnInit {
             return;
 
         this.historyTitle = true;
-
-        // this.dataSvc.searchPlace();
+        this.dataSvc.searchPlace(this.guessCityId, this.search)
+            .then(res => {
+                console.log(res);                
+                this.placeList = res;
+                this.placeNone = res.length ? false : true;
+            });
     }
 
     toMiste(place: any) {
         this.setSearchStorage(place);
         this.appService.geohash = place.geohash;
-        this.router.navigateByUrl('/app/tab/(msite:msite)?geohash=' + place.geohash);
+        this.router.navigateByUrl('/app/tabs/(msite:msite)?geohash=' + place.geohash);
     }
 
     setSearchStorage(place: any) {

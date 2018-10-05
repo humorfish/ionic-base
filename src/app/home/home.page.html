@@ -14,13 +14,13 @@
     </div>
     <a class="guess-city">
       <span>{{guessCity}}</span>
-      <i class="icon-nav app-icon" [routerLink]="['/city', guessCityId, 'guess']"></i>
+      <i class="icon-nav app-icon" [routerLink]="['/city']" [queryParams]="{'id': guessCityId, 'type': 'guess'}"></i>
     </a>
   </nav>
   <section class="hot_city">
     <h4 class="hot_city__title">热门城市</h4>
     <ul class="hot_city__list clear">
-      <li *ngFor="let hotCity of hotCities" [routerLink]="['/city', {id: hotCity.id, type: 'hot'}]">
+      <li *ngFor="let hotCity of hotCities" [routerLink]="['/city']" [queryParams]="{'id': hotCity.id, type: 'hot'}">
         {{hotCity?.name}}
       </li>
     </ul>
@@ -29,7 +29,7 @@
     <li *ngFor="let group of groupCities">
       <h4 class="group-city__title">{{group?.letter}}<span *ngIf="group.letter === 'A'">（按字母排序）</span></h4>
       <ul class="group-city__list clear">
-        <li *ngFor="let city of group.cities" [routerLink]="['/city', {id: city.id, type: 'group'}]" class="ellipsis">{{city?.name}}</li>
+        <li *ngFor="let city of group.cities" [routerLink]="['/city']" [queryParams]="{'id': city.id, 'type': 'group'}" class="ellipsis">{{city?.name}}</li>
       </ul>
     </li>
   </ul>

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <i style="position: absolute; top: 0; line-height: 3.3rem;" class="icon-back white" (click)="goBack()"></i>
+    <section [routerLink]="['/shop/car/detail']" [queryParams]="{id: shopId}" *ngIf="shopDetailData" class="shop-detail" [ngStyle]="{'zIndex': showActivities? '14':'10'}">
+      <header class="shop-detail__header">
+        <section class="description-left">
+          <img [src]="imgBaseUrl + shopDetailData.image_path">
+        </section>
+        <section class="description-right">
+          <h4 class="description-right__title ellipsis">{{shopDetailData.name}}</h4>
+          <p class="description-right__text">商家配送／{{ratingScoresData?.deliver_time}}分钟送达／配送费¥{{shopDetailData.float_delivery_fee}}</p>
+          <p class="description-right__promotion ellipsis">公告：{{promotionInfo}}</p>
+        </section>
+      </header>
+      <footer class="shop-detail__footer" *ngIf="shopDetailData.activities.length">
+          <p class="ellipsis">
+            <span class="tip-icon" [ngStyle]="{'backgroundColor': '#' + shopDetailData.activities[0].icon_color, 'borderColor': '#' + shopDetailData.activities[0].icon_color}">{{shopDetailData.activities[0].icon_name}}</span>
+            <span>{{shopDetailData.activities[0].description}}（APP专享）</span>
+          </p>
+          <p>{{shopDetailData.activities.length}}个活动</p>
+      </footer>
+    </section> 
+  </ion-toolbar> 
+</ion-header> 
+<ion-content>
+
+</ion-content>

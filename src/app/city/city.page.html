@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar color="primary">
-        <i class="icon-back app-icon" (click)="goBack()"></i>
+        <i style="position: absolute; top: 0; line-height: 3.3rem;" class="icon-back app-icon" (click)="goBack()"></i>
         <ion-title>{{guessCity}}</ion-title>
         <span class="city-change-city" [routerLink]="['/home']">切换城市</span>
     </ion-toolbar>
@@ -8,7 +8,7 @@
 <ion-content>
     <form class="city-city-form">
         <div class="city-city-search">
-            <input class="city-keyword" type="text" name="keyword" placeholder="请输入学校、商务楼、地址"/>
+            <input class="city-keyword" type="text" name="keyword" [(ngModel)]="search" placeholder="请输入学校、商务楼、地址"/>
         </div>
         <div class="city-button-submit">
             <button (click)="searchPlace()">提交</button>

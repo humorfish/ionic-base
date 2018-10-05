@@ -1,0 +1,121 @@
+@import "../../../../style/mixin.scss";
+
+.shoplist-container {
+	background-color: #fff;
+	margin-bottom: 3.34rem;
+}
+
+.shop-li {
+    display: flex;
+    border-bottom: .06rem solid #f1f1f1;
+    padding: 1.16rem 0.668rem;
+}
+.shop-img {
+    @include wh(4.5rem, 4.5rem);
+	display: block;
+	margin-right: 0.668rem;
+}
+
+.shop-right {
+    flex: auto;
+    &__header {
+        @include fj;
+        align-items: center;
+        .shop-title {
+            width: 14.2rem;
+			color: #333;
+			padding-top: .016rem;
+			@include font(1.08rem, 1.08rem, 'PingFangSC-Regular');
+			font-weight: 700;
+        }
+        .premium::before {
+            content: '品牌';
+            display: inline-block;
+            font-size: .83rem;
+            line-height: 1rem;
+			color: #333;
+			background-color: #ffd930;
+			padding: 0 0.16rem;
+			border-radius: 0.16rem;
+			margin-right: 0.33rem;
+        }
+        .shop-detail-ul {
+            display: flex;
+            transform: scale(.8);
+            margin-right: -.5rem;
+            .supports {
+                @include sc(0.835rem, #999);
+				border: 0.06rem solid #f1f1f1;
+				padding: 0 0.0668rem;
+				border-radius: 0.13rem;
+				margin-left: 0.083rem;
+            }
+        }
+
+    }
+    .rating-order-num {
+        @include fj(space-between);
+		height: 1rem;
+		margin-top: 0.87rem;
+        &__left {
+            @include fj(flex-start);
+			.rating-section {
+				display: flex;
+				.rating-num {
+					@include sc(0.668rem, #ff6000);
+					margin: 0 0.334rem;
+				}
+			}
+			.order-section {
+				transform: scale(.8);
+				margin-left: -0.334rem;
+				@include sc(0.668rem, #666);
+			}
+        }
+        &__right {
+            display: flex;
+			align-items: center;
+			transform: scale(.7);
+			min-width: 8.35rem;
+			justify-content: flex-end;
+            margin-right: -1.336rem;
+            .delivery_style{
+				font-size: 0.668rem;
+				padding: 0.0668rem 0.13rem 0;
+				border-radius: 0.13rem;
+				margin-left: 0.13rem;
+				border: 1px;
+			}
+			.delivery_left{
+				color: #fff;
+				background-color: $blue;
+				border: 0.06rem solid $blue;
+			}
+			.delivery_right{
+				color: $blue;
+				border: 0.06rem solid $blue;
+			}
+        }
+    }
+    .fee-distance {
+		margin-top: 0.87rem;
+		@include fj;
+		@include sc(0.835rem, #333);
+		.fee {
+			transform: scale(.9);
+			@include sc(0.835rem, #666);
+		}
+		.distance-time {
+			transform: scale(.9);
+			span{
+				color: #999;
+			}
+			.order_time {
+				color: $blue;
+			}
+			.segmentation {
+				color: #ccc;
+			}
+		}
+	}
+}
