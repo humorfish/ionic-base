@@ -9,6 +9,8 @@ import { ShopMsiteComp } from './shop/msite/shop-msite';
 import { RatingStarComp } from './rating-star/rating-star';
 import { ElmSvgComp } from './svg/svg';
 import { LoadingComp } from './loading/loading';
+import { BuyCartComp } from './buy-cart/buy-cart';
+import { ShopEvaluateComp } from './shop/evaluate/evaluate';
 
 // import { DirectivesModule } from '../directives';
 const coms: any[] = [
@@ -16,7 +18,9 @@ const coms: any[] = [
   ShopMsiteComp,
   ElmSvgComp,
   RatingStarComp,
-  LoadingComp
+  LoadingComp,
+  BuyCartComp,
+  ShopEvaluateComp
 ];
 
 @NgModule({

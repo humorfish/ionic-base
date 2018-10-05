@@ -8,6 +8,16 @@ ion-title {
   text-align: center;
   font-size: 1.4rem;
   min-height: 3.3rem;
+  &[color-white],
+  &.color-white {
+    color: white;
+    --color: white;
+  }
+  &[bg-white],
+  &.bg-white {
+    background-color: white;
+    --background-color: white;
+  }
 }
 
 /** ion-back-button **/

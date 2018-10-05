@@ -1,0 +1,22 @@
+<section class="cart-wrapper">
+  <div *ngIf="!food.specifications.length; else specifications" class="cart-button">
+    <span *ngIf="foodNum()" (click)="removeOutCart(food.category_id, food.item_id, food.specfoods[0].food_id, food.specfoods[0].name, food.specfoods[0].price, '', food.specfoods[0].packing_fee, food.specfoods[0].sku_id, food.specfoods[0].stock)">
+      <svg>
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-minus"></use>
+      </svg>
+    </span>
+    <span class="cart-num" *ngIf="foodNum()">{{foodNum()}}</span>
+    <svg class="add-icon" (click)="addToCart(food.category_id, food.item_id, food.specfoods[0].food_id, food.specfoods[0].name, food.specfoods[0].price, '', food.specfoods[0].packing_fee, food.specfoods[0].sku_id, food.specfoods[0].stock, $event)">
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use>
+    </svg>
+  </div>
+  <ng-template #specifications>
+    <div class="choose-specification">
+      <svg *ngIf="foodNum()" (click)="showReduceTip()">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-minus"></use>
+      </svg>
+      <span class="cart-num" *ngIf="foodNum()">{{foodNum()}}</span>
+      <span class="show-chooselist" (click)="showChooseList(food)">选规格</span>
+    </div>      
+  </ng-template>
+</section>

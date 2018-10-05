@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-      <i style="position: absolute; top: 0; line-height: 3.3rem;" class="icon-back white" (click)="goBack()"></i>
+    <i style="position: absolute; top: 0; line-height: 3.3rem;" class="icon-back white" (click)="goBack()"></i>
     <section [routerLink]="['/shop/car/detail']" [queryParams]="{id: shopId}" *ngIf="shopDetailData" class="shop-detail" [ngStyle]="{'zIndex': showActivities? '14':'10'}">
       <header class="shop-detail__header">
         <section class="description-left">
@@ -22,6 +22,158 @@
     </section> 
   </ion-toolbar> 
 </ion-header> 
-<ion-content>
-
+<ion-content [ngClass]="{'activities_content': shopDetailData?.activities?.length}">
+  <div *ngIf="!showLoading">
+    <section class="shop-container">
+      <div class="change-show-type">
+        <div>
+          <span [ngClass]="{'actived': !changeShowType || changeShowType === 'food'}" (click)="changeShowType = 'food'">商品</span>
+        </div>
+        <div>
+          <span [ngClass]="{'actived': changeShowType === 'rating'}" (click)="changeShowType ='rating'">评分<b class="rating">({{shopDetailData.rating}}分)</b></span>
+        </div>
+      </div>
+      <div [hidden]="changeShowType && changeShowType != 'food'" class="food-container">
+        <section class="menu-container">
+          <ul class="menu-container__left">
+            <li *ngFor="let item of menuList; index as index" [ngClass]="{'actived': index === menuIndex}" (click)="chooseMenu(index)">
+              <img [src]="getImgPath(item.icon_url)" *ngIf="item.icon_url">
+              <span>{{item.name}}</span>
+              <span class="category-num" *ngIf="categoryNum[index] && item.type === 1">{{categoryNum[index]}}</span>
+            </li>
+          </ul>
+          <div class="menu-container__right">
+            <header class="menu-container__right_header">
+              <strong class="title">{{menuFood?.name}}</strong>
+              <span class="description">{{menuFood?.description}}</span>
+            </header>
+            <section *ngFor="let food of menuFood?.foods; index as foodindex" class="menu-detail-list">
+              <div class="menu-detail-link">
+                <img class="menu-food-img" [src]="imgBaseUrl + food.image_path">
+                <section class="description">
+                  <h3 class="description__header">
+                    <strong class="food-name">{{food.name}}</strong>
+                    <ul *ngIf="food.attributes.length" class="attributes-list">
+                      <li *ngFor="let attribute of food.attributes" [ngStyle]="{'color': '#' + attribute.icon_color,'borderColor':'#' +attribute.icon_color}"
+                        [ngClass]="{'attribute-new': attribute.icon_name === '新'}">
+                        <p [ngStyle]="{'color': attribute.icon_name === '新'? '#fff' : '#' + attribute.icon_color}">{{attribute.icon_name === '新'? '新品':attribute.icon_name}}</p>
+                      </li>
+                    </ul>
+                  </h3>
+                  <p class="food-rating">
+                    <span>月售{{food.month_sales}}份</span>
+                    <span>好评率{{food.satisfy_rate}}%</span>
+                  </p>
+                </section>
+              </div>
+              <div class="menu-detail-list__footer">
+                <section class="food-price">
+                  <span>¥</span>
+                  <span>{{food.specfoods[0].price}}</span>
+                  <span *ngIf="food.specifications.length">起</span>
+                </section>
+                <buy-cart [shopId]="shopId" [food]="food" (onCartChange)="shopCartChange()" (onShowChooseList)="onShowChooseList($event)"
+                (onShowMoveDot)="onShowMoveDot($event)"></buy-cart>
+              </div>
+            </section>
+          </div>
+        </section>
+        <section class="buy-cart-container">
+          <div class="cart-icon-num" (click)="toggleCartList()">
+            <div class="cart-icon-container" [ngClass]="{'cart-icon-activity': totalPrice > 0, 'move-in-cart':receiveInCart}">
+              <span *ngIf="totalNum()" class="cart-list-length">{{totalNum()}}</span>
+              <svg class="cart-icon">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-icon"></use>
+              </svg>
+            </div>
+            <div class="cart-num">
+              <div>¥ {{totalPrice}}</div>
+              <div>配送费¥{{deliveryFee()}}</div>
+            </div>
+          </div>
+          <section class="gotopay" [ngClass]="{'gotopay-acitvity': minimumOrderAmount() <= 0}">
+            <span class="gotopay-button-style" *ngIf="minimumOrderAmount() > 0">还差¥{{minimumOrderAmount()}}起送</span>
+            <div class="gotopay-button-style" *ngIf="minimumOrderAmount() <= 0" (click)="toConfirmOrder()">去结算</div>
+          </section>
+        </section>
+        <section class="cart-food-list" [@cartListState]="cartState" *ngIf="showCartList&&cartFoodList.length">
+          <header>
+            <h4>购物车</h4>
+            <div (click)="clearCart()">
+              <svg>
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-remove"></use>
+              </svg>
+              <span class="clear-cart">清空</span>
+            </div>
+          </header>
+          <ul class="cart-food-details" id="cartFood">
+            <li *ngFor="let item of cartFoodList; index as index" class="cart-food-li">
+              <div class="cart-list-num">
+                <p class="ellipsis">{{item.name}}</p>
+                <p class="ellipsis">{{item.specs}}</p>
+              </div>
+              <div class="cart-list-price">
+                <span>¥</span>
+                <span>{{item.price}}</span>
+              </div>
+              <section class="cart-list-control">
+                <span (click)="removeOutCart(item.category_id, item.item_id, item.food_id, item.name, item.price, item.specs)">
+                                            <svg>
+                                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-minus"></use>
+                                            </svg>
+                                        </span>
+                <span class="cart-num">{{item.num}}</span>
+                <svg class="cart-add" (click)="addToCart(item.category_id, item.item_id, item.food_id, item.name, item.price, item.specs)">
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use>
+                </svg>
+              </section>
+            </li>
+          </ul>
+        </section>
+        <div class="screen-cover" [hidden]="!(showCartList && cartFoodList.length)" (click)="toggleCartList()"></div>
+      </div>
+      <div [hidden]="changeShowType !='rating'">
+        <shop-evaluate [shopId]="shopId" [rating]="shopDetailData.rating"></shop-evaluate>
+      </div>
+    </section>
+    <section>
+        <div class="specs-cover" (click)="onShowChooseList()" *ngIf="showSpecs"></div>
+        <div name="fadeBounce">
+          <div class="specs-list" *ngIf="showSpecs">
+            <header class="specs-list-header">
+              <h4 class="ellipsis">{{choosedFood.name}}</h4>
+              <ion-icon name="close" class="specs-cancel" (click)="onShowChooseList()"></ion-icon>
+            </header>
+            <section class="specs-details">
+              <h5 class="specs-details-title">{{choosedFood.specifications[0].name}}</h5>
+              <ul>
+                <li *ngFor="let item of choosedFood.specifications[0].values; index as itemIndex" [ngClass]="{'specs-activity': itemIndex === specsIndex}"
+                  (click)="chooseSpecs(itemIndex)">
+                  {{item}}
+                </li>
+              </ul>
+            </section>
+            <footer class="specs-footer">
+              <div class="specs-price">
+                <span>¥ </span>
+                <span>{{choosedFood.specfoods[specsIndex].price}}</span>
+              </div>
+              <div class="specs-addto-cart" (click)="addSpecs(choosedFood.category_id, choosedFood.item_id, choosedFood.specfoods[specsIndex].food_id, choosedFood.specfoods[specsIndex].name, choosedFood.specfoods[specsIndex].price, choosedFood.specifications[0].values[specsIndex], choosedFood.specfoods[specsIndex].packing_fee, choosedFood.specfoods[specsIndex].sku_id, choosedFood.specfoods[specsIndex].stock)">选好了</div>
+            </footer>
+          </div>
+        </div>
+      </section>
+      <ng-container *ngFor="let item of showMoveDot; index as index">
+        <span class="move-dot" *ngIf="item" (@flyInCart.start)="animationStarted($event)" (@flyInCart.done)="animationDone($event, index)"
+        [@flyInCart]="'in'">
+          <svg class="move_liner">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#cart-add"></use>
+          </svg>
+        </span>
+      </ng-container>
+  </div>
+  <loading [hidden]="!showLoading"></loading>
+  <section class="animation_opactiy shop_back_svg_container" *ngIf="showLoading">
+    <img src="../../assets/imgs/shop_back_svg.svg">
+  </section>
 </ion-content>

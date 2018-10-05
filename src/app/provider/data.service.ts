@@ -79,7 +79,7 @@ export class DataService {
         return await this.http.get('/api/foodmenu' + `?restaurant_id=${shopId}`).toPromise();
     }
 
-    async getRatingList(shopId: string): Promise<any>
+    async getRatingList(shopId: string, ratingOffset: number, name?: string): Promise<any>
     {
         return await this.http.get('/api/ratinglist').toPromise();
     }

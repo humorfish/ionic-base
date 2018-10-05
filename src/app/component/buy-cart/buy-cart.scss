@@ -1,0 +1,34 @@
+@import "../../../style/mixin.scss";
+
+.cart-wrapper {
+    .cart-button {
+        display: flex;
+        align-items: center;
+    }
+    .add-icon {
+        position: relative;
+    }
+    svg {
+        @include wh(1.5rem, 1.5rem);
+        fill: var(--ion-color-primary);
+    }
+    .cart-num {
+        @include sc(1.1rem, #666);
+        min-width: 1rem;
+        text-align: center;
+        font-family: Helvetica Neue,Tahoma;
+        margin-right: .2rem;
+    }
+    .choose-specification {
+        display: flex;
+        align-items: center;
+        .show-chooselist {
+            display: block;
+            @include sc(.92rem, #fff);
+            padding: .16rem .33rem;
+            background-color: $blue;
+            border-radius: 0.33rem;
+            border: 1px solid $blue;
+        }
+    }
+}
